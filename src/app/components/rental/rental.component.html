@@ -1,0 +1,20 @@
+<button *ngIf="dataLoaded==false" class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Yükleniyor...
+  </button>
+<table *ngIf = "dataLoaded==true" class="table">
+    <thead >
+        <tr >
+            <th class="bg-primary" style="color:white">Marka</th>
+            <th class="bg-primary" style="color:white">Müşteri</th>
+            <th class="bg-primary" style="color:white">Kiralama Başlangıç Tarihi</th>
+            <th class="bg-primary" style="color:white">Kiralama Bitiş Tarihi</th>
+        </tr>
+    </thead>
+    <tr *ngFor ="let rental of rentals">
+        <td>{{rental.carName}}</td>
+        <td>{{rental.userName}}</td>
+        <td>{{rental.rentDate}}</td>
+        <td>{{rental.returnDate}}</td>
+    </tr>
+</table>

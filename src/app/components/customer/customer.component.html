@@ -1,0 +1,16 @@
+<button *ngIf="dataLoaded==false" class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Yükleniyor...
+  </button>
+<table *ngIf = "dataLoaded==true" class="table">
+    <thead >
+        <tr >
+            <th class="bg-primary" style="color:white">Id</th>
+            <th class="bg-primary" style="color:white">Şirket</th>
+        </tr>
+    </thead>
+    <tr *ngFor ="let customer of customers">
+        <td>{{customer.userId}}</td>
+        <td>{{customer.companyName}}</td>
+    </tr>
+</table>

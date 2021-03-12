@@ -1,0 +1,24 @@
+<button *ngIf="dataLoaded==false" class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Yükleniyor...
+  </button>
+<table *ngIf = "dataLoaded==true" class="table">
+    <thead >
+        <tr >
+            <th class="bg-primary" style="color:white">Marka</th>
+            <th class="bg-primary" style="color:white">Model</th>
+            <th class="bg-primary" style="color:white">Renk</th>
+            <th class="bg-primary" style="color:white">Model Yılı</th>
+            <th class="bg-primary" style="color:white">Günlük Ücreti</th>
+            <th class="bg-primary" style="color:white">Araç Fotoğrafı</th>
+        </tr>
+    </thead>
+    <tr *ngFor ="let car of cars">
+        <td>{{car.brandName}}</td>
+        <td>{{car.carName}}</td>
+        <td>{{car.colorName}}</td>
+        <td>{{car.modelYear}}</td>
+        <td>{{car.dailyPrice}}</td>
+        <td>{{car.imagePath}}</td>
+    </tr>
+</table>
