@@ -2,8 +2,21 @@
     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
     Yükleniyor...
   </button>
-  <ul *ngIf = "dataLoaded==true" class="list-group">
-    <li class="list-group-item active" aria-current="true">Renkler</li>
-      <li *ngFor ="let color of colors" class="list-group-item">{{color.colorName}}</li>
-    </ul>
+  <ul *ngIf="dataLoaded == true" class="list-group">
+    <li
+    (click)="setCurrentAllColor('')"
+    routerLink=""
+    [class]="getAllColorClass()" 
+    aria-current="true">
+    Renkler
+  </li>
+    <li
+      (click)="setCurrentColor(color.colorName)"
+      routerLink="/cars/color/{{ color.colorName }}"
+      *ngFor="let color of colors"
+      [class]="getCurrentColorClass(color.colorName)"
+    >
+      {{ color.colorName }}
+    </li>
+  </ul>
   

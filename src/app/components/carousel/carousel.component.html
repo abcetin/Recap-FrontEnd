@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <style>
+        .carousel-item {
+          height: 32rem;
+          background: #777;
+          position: relative;
+        }
+      </style>
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div
+            class="carousel-item"
+            [ngClass]="getSliderClass(isFirst, isLast, isEven, isOdd)"
+            *ngFor="
+              let carImage of carImages;
+              index as i;
+              first as isFirst;
+              last as isLast;
+              even as isEven;
+              odd as isOdd
+            "
+          >
+            <img
+              [src]="getImagePath(carImage.imagePath)"
+              class="d-block slider-image"
+              height="512"
+              width="712"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Marka</th>
+              <th>Model</th>
+              <th>Renk</th>
+              <th>Model Yılı</th>
+              <th>Günlük Ücreti</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let car of cars">
+            <td>{{ car.brandName }}</td>
+            <td>{{ car.carName }}</td>
+            <td>{{ car.colorName }}</td>
+            <td>{{ car.modelYear }}</td>
+            <td>{{ car.dailyPrice  |currency: "TRY":"₺"}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-3">
+     
+    </div>
+  </div>
+</div>

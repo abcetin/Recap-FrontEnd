@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CustomerComponent } from '../customer/customer.component';
+import { RentalComponent } from '../rental/rental.component';
 
 @Component({
   selector: 'app-navi',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    ) { }
 
   ngOnInit(): void {
   }
+
+ 
+
 
 }

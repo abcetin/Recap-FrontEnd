@@ -10,6 +10,7 @@ import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { NaviComponent } from './components/navi/navi.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NaviComponent } from './components/navi/navi.component';
     CustomerComponent,
     RentalComponent,
     NaviComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,3 +32,4 @@ import { NaviComponent } from './components/navi/navi.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

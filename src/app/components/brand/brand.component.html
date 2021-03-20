@@ -1,9 +1,31 @@
-<button *ngIf="dataLoaded==false" class="btn btn-primary" type="button" disabled>
-  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+<button
+  *ngIf="dataLoaded == false"
+  class="btn btn-primary"
+  type="button"
+  disabled
+>
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
   Yükleniyor...
 </button>
 
-<ul *ngIf = "dataLoaded==true" class="list-group">
-  <li class="list-group-item active" aria-current="true">Modeller</li>
-    <li *ngFor ="let brand of brands" class="list-group-item">{{brand.brandName}}</li>
-  </ul>
+<ul *ngIf="dataLoaded == true" class="list-group">
+  <li 
+  (click)="setCurrentAllBrand('')"
+  routerLink=""
+  [class]="getAllBrandClass()" 
+  aria-current="true">
+  Modeller
+</li>
+  <li
+    (click)="setCurrentBrand(brand.brandName)"
+    routerLink="/cars/brand/{{ brand.brandName }}"
+    *ngFor="let brand of brands"
+    [class]="getCurrentBrandClass(brand.brandName)"
+  >
+    {{ brand.brandName }}
+  </li>
+</ul>
