@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
       <style>
         .carousel-item {
           height: 32rem;
@@ -30,7 +30,7 @@
               [src]="getImagePath(carImage.imagePath)"
               class="d-block slider-image"
               height="512"
-              width="712"
+              width="912"
             />
           </div>
         </div>
@@ -52,28 +52,10 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Marka</th>
-              <th>Model</th>
-              <th>Renk</th>
-              <th>Model Yılı</th>
-              <th>Günlük Ücreti</th>
-            </tr>
-          </thead>
-          <tr *ngFor="let car of cars">
-            <td>{{ car.brandName }}</td>
-            <td>{{ car.carName }}</td>
-            <td>{{ car.colorName }}</td>
-            <td>{{ car.modelYear }}</td>
-            <td>{{ car.dailyPrice  |currency: "TRY":"₺"}}</td>
-          </tr>
-        </table>
       </div>
     </div>
-    <div class="col-md-3">
-     
+    <div class="col-md-4">
+      <app-rental-add></app-rental-add>
     </div>
   </div>
 </div>

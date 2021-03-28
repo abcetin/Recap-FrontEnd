@@ -1,0 +1,89 @@
+<div class="modal-content">
+  <div class="modal-body">
+    <div class="card mt-4">
+      <div class="card-header text-center">
+        <strong>Ödeme İşlemlemi</strong>
+      </div>
+      <div class="card-body">
+        <div class="container-fluid py-3">
+          <div class="row">
+            <div class="mx-auto">
+              <div id="pay-invoice" class="card">
+                <div class="card-body">
+                  <form  [formGroup]="cardAddForm">
+                    <div class="form-group">
+                      <label for="cc-number" class="control-label mb-1"
+                        >Kart Numarası</label
+                      >
+                      <input
+                        class="form-control" 
+                        id="cartNumber" 
+                        formControlName="cartNumber"
+                        autocomplete="off"
+                        type="text"
+                      />
+                    </div>
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="cc-exp" class="control-label mb-1"
+                            >Ay</label
+                          >
+                          <input
+                          class="form-control" 
+                          id="mounth" 
+                          formControlName="mounth"
+                          type="number"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="form-group">
+                          <label for="cc-exp" class="control-label mb-1"
+                            >Yıl</label
+                          >
+                          <input
+                          class="form-control" 
+                          id="year" 
+                          formControlName="year"
+                          type="number"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <label for="x_card_code" class="control-label mb-1"
+                          >CCV</label
+                        >
+                        <div class="input-group">
+                          <input
+                          class="form-control" 
+                          id="ccv" 
+                          formControlName="ccv"
+                          type="number"
+                          autocomplete="off"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="x_zip" class="control-label mb-1">Kart Sahibi</label>
+                        <input id="cartOwner" formControlName="cartOwner" type="text" class="form-control" value="" data-val="true">
+                        <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
+                    </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button (click)="addCard()" class="btn btn-success" data-bs-dismiss="modal">
+              Ödeme Yap
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

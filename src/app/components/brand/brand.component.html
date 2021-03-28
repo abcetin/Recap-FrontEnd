@@ -12,20 +12,36 @@
   Yükleniyor...
 </button>
 
-<ul *ngIf="dataLoaded == true" class="list-group">
-  <li 
-  (click)="setCurrentAllBrand('')"
-  routerLink=""
-  [class]="getAllBrandClass()" 
-  aria-current="true">
-  Modeller
-</li>
-  <li
-    (click)="setCurrentBrand(brand.brandName)"
-    routerLink="/cars/brand/{{ brand.brandName }}"
-    *ngFor="let brand of brands"
-    [class]="getCurrentBrandClass(brand.brandName)"
-  >
-    {{ brand.brandName }}
-  </li>
-</ul>
+<div class="mb-3">
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="filterText"
+    id="filterText"
+    placeholder="arama ifadesi giriniz..."
+  />
+
+  <div *ngIf="filterText" class="alert alert-success">
+    {{ filterText }} aradınız.
+  </div>
+  <br />
+
+  <ul *ngIf="dataLoaded == true" class="list-group">
+    <li
+      (click)="setCurrentAllBrand('')"
+      routerLink=""
+      [class]="getAllBrandClass()"
+      aria-current="true"
+    >
+      Modeller
+    </li>
+    <li
+      (click)="setCurrentBrand(brand.brandName)"
+      routerLink="/cars/brand/{{ brand.brandName }}"
+      *ngFor="let brand of brands | filterBrand: filterText"
+      [class]="getCurrentBrandClass(brand.brandName)"
+    >
+      {{ brand.brandName }}
+    </li>
+  </ul>
+</div>

@@ -1,22 +1,44 @@
-<button *ngIf="dataLoaded==false" class="btn btn-primary" type="button" disabled>
-    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-    Yükleniyor...
-  </button>
-  <ul *ngIf="dataLoaded == true" class="list-group">
-    <li
-    (click)="setCurrentAllColor('')"
+<button
+  *ngIf="dataLoaded == false"
+  class="btn btn-primary"
+  type="button"
+  disabled
+>
+  <span
+    class="spinner-grow spinner-grow-sm"
+    role="status"
+    aria-hidden="true"
+  ></span>
+  Yükleniyor...
+</button>
+<div class="mb-3">
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="filterText"
+    id="filterText"
+    placeholder="arama ifadesi giriniz..."
+  />
+
+  <div *ngIf="filterText" class="alert alert-success">
+    {{ filterText }} aradınız.
+  </div>
+</div>
+<ul *ngIf="dataLoaded == true" class="list-group">
+  <li
     routerLink=""
-    [class]="getAllColorClass()" 
-    aria-current="true">
+    (click)="setCurrentAllColor('')"
+    [class]="getAllColorClass()"
+    aria-current="true"
+  >
     Renkler
   </li>
-    <li
-      (click)="setCurrentColor(color.colorName)"
-      routerLink="/cars/color/{{ color.colorName }}"
-      *ngFor="let color of colors"
-      [class]="getCurrentColorClass(color.colorName)"
-    >
-      {{ color.colorName }}
-    </li>
-  </ul>
-  
+  <li
+    (click)="setCurrentColor(color.colorName)"
+    routerLink="/cars/color/{{color.colorName}}"
+    *ngFor="let color of colors | filterColor: filterText"
+    [class]="getCurrentColorClass(color.colorName)"
+  >
+    {{ color.colorName }}
+  </li>
+</ul>

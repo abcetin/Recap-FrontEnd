@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car } from 'src/app/models/car';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { CarImage } from 'src/app/models/carImage';
 import { CarService } from 'src/app/services/car.service';
 import { CarImageService } from 'src/app/services/carImage.service';
@@ -12,21 +12,21 @@ import { CarImageService } from 'src/app/services/carImage.service';
 })
 export class CarouselComponent implements OnInit {
   carImages: CarImage[] = [];
-  cars:Car[]=[];
   baseUrl = 'https://localhost:44361/';
   images:string[]=[];
+  
+ 
 
   constructor(
     private carImageService: CarImageService,
     private carService:CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
-        this.getCars(params['id']);
         this.getCarImages(params['id']);
       }
       else{
@@ -39,11 +39,6 @@ export class CarouselComponent implements OnInit {
     this.carImageService.getCarImageDetail(id).subscribe((response) => {
       this.carImages = response.data;
     });
-  }
-  getCars(id:number){
-    this.carService.getCarsById(id).subscribe(response=>{
-      this.cars=response.data;
-    })
   }
 
   getImagePath(image: string[]) {
@@ -58,4 +53,8 @@ export class CarouselComponent implements OnInit {
     odd:isOdd
     };
   }
+
+ 
+
+  
 }
