@@ -18,7 +18,7 @@
                 <td>Müşteri Bilgisi</td>
                 <td>
                   <select [(ngModel)]="customerId" class="form-select" id="customerId"  formControlName ="customerId"  >
-                    <option selected disabled>Müşteri Seçiniz</option>
+                    <option selected value="Müşteri Seçiniz">Müşteri Seçiniz</option>
                     <option [value]="customer.id" *ngFor="let customer of customers" >
                     {{ customer.companyName }}
                     </option>
@@ -39,9 +39,9 @@
                   id="rentDate"
                   formControlName="rentDate"
                   class="form-control"
-                  [(ngModel)]="rentDate"
                   min="{{ getRentMinDate() }}"
                   [value]="getRentMinDate()"
+                  [(ngModel)]="rentDate"
                   type="date"
                 /></td>
               </tr>

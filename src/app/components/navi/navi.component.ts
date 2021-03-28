@@ -14,6 +14,7 @@ export class NaviComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    localStorage.removeItem("message");
   }
 
  

@@ -1,3 +1,4 @@
+import { getLocaleDateFormat, getLocaleDayPeriods } from '@angular/common';
 import { Component, ComponentRef, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder, FormControl,Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,9 +26,9 @@ export class RentalAddComponent implements OnInit {
   cars: Car[] = [];
   rental:Rental[]=[];
   customers: Customer[] = [];
-  customerId: string;
-  rentDate: Date;
-  returnDate: Date;
+  customerId: string ="Müşteri Seçiniz";
+  rentDate:string = new Date().toLocaleDateString('en-CA');
+  returnDate: string = new Date().toLocaleDateString('en-CA');
   modalRef: BsModalRef;
   click : boolean = false;
 
@@ -120,12 +121,12 @@ export class RentalAddComponent implements OnInit {
 
   getRentMinDate() {
     var today = new Date();
-    today.setDate(today.getDate()+1);
+    today.setDate(today.getDate());
     return today.toISOString().slice(0, 10);
   }
   getReturnMinDate() {
     var today = new Date();
-    today.setDate(today.getDate() + 2);
+    today.setDate(today.getDate() + 1);
     return today.toISOString().slice(0, 10);
   }
 

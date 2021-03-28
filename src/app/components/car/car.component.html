@@ -1,8 +1,4 @@
-<button
-  *ngIf="dataLoaded == false"
-  class="btn btn-primary"
-  type="button"
->
+<button *ngIf="dataLoaded == false" class="btn btn-primary" type="button">
   <span
     class="spinner-grow spinner-grow-sm"
     role="status"
@@ -17,50 +13,48 @@
       <app-color></app-color><br />
     </div>
     <div class="col-md-9">
-      <div class="container p-3 my-3 border">
-        <div class="mb-3">
-          <label for="filterText" class="form-label">Araba Ara</label>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="filterText"
-            id="filterText"
-            placeholder="arama ifadesi giriniz..."
-          />
-          <div *ngIf="filterText" class="alert alert-success">
-            {{ filterText }} aradınız.
-          </div>
+      <div class="mb-3 ">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="filterText"
+          id="filterText"
+          placeholder="arama ifadesi giriniz..."
+        />
+        <div *ngIf="filterText" class="alert alert-primary">
+          {{ filterText }} aradınız.
         </div>
-         <!-- <app-car-filter (brandFilterEvent)='setDataFromCarBrandFilter($event)'(colorFilterEvent)='setDataFromCarColorFilter($event)' ></app-car-filter> -->
-        <div class="row">
-          <div
-            class="card border-success"
-            style="width: 15rem"
-            *ngFor="let car of cars | filterCars: filterText" >
-            <a class="lightbox"><br>
-              <img
-                src="{{ baseUrl }}{{ car.imagePath[0] }}"
-                class="card-img-top"
-                weight="130"
-                height="180"
-            /></a>
-            <div class="card-body">
-              <h5 class="card-title">
-                {{ car.brandName }} - {{ car.carName }}
-              </h5>
-              <p class="card-text">
-                Renk : {{ car.colorName }}<br />
-                Model Yılı : {{ car.modelYear }} <br />
-                Günlük Ücreti : {{ car.dailyPrice | currency: "TRY":"₺":"" }}
-              </p>
-              <a
-                routerLink="../../../getcarimages/{{ car.id }}"
-                class="btn btn-primary"
-              >
-                Detay
-              </a>
-            </div>
-          </div> 
+      </div>
+      <app-car-filter (brandFilterEvent)='setDataFromCarBrandFilter($event)'(colorFilterEvent)='setDataFromCarColorFilter($event)' ></app-car-filter>
+      <div class="container px-5">
+      <div class="row gx-5 ">
+        <div
+          class="card col-md-4 mb-3 mx-3"
+          style="width: 15rem"
+          *ngFor="let car of cars | filterCars: filterText"
+        >
+          <a class="lightbox"
+            ><br />
+            <img
+              src="{{ baseUrl }}{{ car.imagePath[0] }}"
+              class="card-img-top"
+              weight="130"
+              height="180"
+          /></a>
+          <div class="card-body d-grid gap-2 mx-auto">
+            <h5 class="card-title">{{ car.brandName }} - {{ car.carName }}</h5>
+            <p class="card-text">
+              Renk : {{ car.colorName }}<br />
+              Model Yılı : {{ car.modelYear }} <br />
+              Günlük Ücreti : {{ car.dailyPrice | currency: "TRY":"₺":"" }}
+            </p>
+            <a
+              routerLink="../../../getcarimages/{{ car.id }}"
+              class="btn btn-primary"
+            >
+              Detay
+            </a>
+          </div>
         </div>
       </div>
     </div>

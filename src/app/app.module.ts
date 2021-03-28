@@ -20,10 +20,12 @@ import { FilterBrandPipe } from './pipes/filter-brand.pipe';
 
 import {ToastrModule} from 'ngx-toastr';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import { RentalAddComponent } from './components/rental-add/rental-add.component';
 import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 import { PaymentCalculatePipe } from './pipes/payment-calculate.pipe';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RentalAddComponent } from './components/rental-add/rental-add.component';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { CarFilterComponent } from './components/car-filter/car-filter.component
     PaymentModalComponent,
     PaymentCalculatePipe,
     CarFilterComponent,
+    CarAddComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
