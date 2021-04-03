@@ -20,13 +20,13 @@
     id="filterText"
     placeholder="arama ifadesi giriniz..."
   />
-
-  <div *ngIf="filterText" class="alert alert-success">
+</div>
+    <div *ngIf="filterText" class="alert alert-success">
     {{ filterText }} aradınız.
-  </div>
-  <br />
+    </div>
+  <br/>
 
-  <ul *ngIf="dataLoaded == true" class="list-group">
+  <ul  *ngIf="dataLoaded == true" class="list-group">
     <li
       (click)="setCurrentAllBrand('')"
       routerLink=""
@@ -40,8 +40,10 @@
       routerLink="/cars/brand/{{ brand.brandName }}"
       *ngFor="let brand of brands | filterBrand: filterText"
       [class]="getCurrentBrandClass(brand.brandName)"
+      class="list-group-item d-flex justify-content-between align-items-center"
     >
-      {{ brand.brandName }}
+      {{ brand.brandName }} 
+      <span (click)="updateButton(brand)" type="button" class="badge bg-success rounded-pill">Güncelle</span>
     </li>
+
   </ul>
-</div>

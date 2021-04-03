@@ -1,0 +1,68 @@
+<div class="content">
+    <div class="col-md-8" style="margin-left: 10%;">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Marka Güncelle</h5>
+          <div class="card-body">
+            <form [formGroup]="brandUpdateFrom">
+              <div  class="mb-3">
+                <div class="form-group">
+                    <div class="row">
+                    <label for="id">Marka İsmi(*)</label>
+                    <div class="col-sm-10">
+                    <select id="id"  formControlName ="id"  [(ngModel)]="id"  class="form-select " >
+                        <option selected >Marka Seçiniz</option>
+                        <option  *ngFor="let brand of brands"  [value]="brand.id"   >{{brand.brandName}}  </option>
+                    </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button
+                          type="button"
+                          class="btn btn-outline-info"
+                          (click)="getById(id)"
+                        >
+                          Getir
+                        </button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="form-group">
+                    <label for="brandId">Marka Kodu</label>
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        id="brandId"
+                        [(ngModel)]="brandId"
+                        formControlName="brandId"
+                        class="form-control"
+                        placeholder="Model Kodu"
+                      />
+                    </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="brandName">Marka İsmi</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="brandId"
+                    [(ngModel)]="brandName"
+                    formControlName="brandName"
+                    class="form-control"
+                    placeholder="Model İsmi"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-fiil btn-success" (click)="update()">Güncelle</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  

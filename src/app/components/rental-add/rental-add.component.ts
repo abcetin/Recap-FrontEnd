@@ -1,10 +1,9 @@
-import { getLocaleDateFormat, getLocaleDayPeriods } from '@angular/common';
 import { Component, ComponentRef, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder, FormControl,Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/carDetail';
 import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
@@ -23,7 +22,7 @@ export class RentalAddComponent implements OnInit {
   dataLoaded = false;
   rentalAddForm: FormGroup;
   carId:number;
-  cars: Car[] = [];
+  cars: CarDetail[] = [];
   rental:Rental[]=[];
   customers: Customer[] = [];
   customerId: string ="Müşteri Seçiniz";
@@ -55,7 +54,7 @@ export class RentalAddComponent implements OnInit {
   }
 
   getCars(id: number) {
-    this.carService.getCarsById(id).subscribe((response) => {
+    this.carService.getCarDetailsById(id).subscribe((response) => {
       this.cars = response.data;
     });
   }
@@ -94,7 +93,6 @@ export class RentalAddComponent implements OnInit {
         let rentalModel = Object.assign({}, this.rentalAddForm.value);
         (rentalModel.customerId = parseInt(this.customerId.toString()));
         rentalModel.carId=parseInt(this.carId.toString());
-        console.log(rentalModel)
         
         if(localStorage.getItem("message")){
           this.rentalService.addRental(rentalModel).subscribe(

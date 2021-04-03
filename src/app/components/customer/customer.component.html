@@ -5,12 +5,14 @@
 <table *ngIf = "dataLoaded==true" class="table">
     <thead >
         <tr >
-            <th class="bg-primary" style="color:white">Id</th>
+            <th class="bg-primary" style="color:white">User Id</th>
             <th class="bg-primary" style="color:white">Şirket</th>
         </tr>
     </thead>
-    <tr *ngFor ="let customer of customers">
-        <td>{{customer.userId}}</td>
-        <td>{{customer.companyName}}</td>
-    </tr>
+    <tbody>
+         <tr *ngFor ="let customer of customers">
+            <td>{{customer.userId}}</td>
+            <td>{{customer.companyName}}</td>
+        </tr>
+    </tbody>
 </table>

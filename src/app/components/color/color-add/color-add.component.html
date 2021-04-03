@@ -1,0 +1,43 @@
+<div class="content">
+    <div class="col-md-8" style="margin-left: 10%;">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Renk Ekle</h5>
+          <div class="card-body">
+            <form [formGroup]="colorAddFrom">
+              <div class="mb-3">
+                <div class="form-group">
+                    <label for="colorId">Renk Kodu</label>
+                    <div class="form-group">
+                      <input
+                        type="number"
+                        id="colorId"
+                        formControlName="colorId"
+                        class="form-control"
+                        placeholder="Renk Kodu"
+                      />
+                    </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="colorName">Marka İsmi</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="colorName"
+                    formControlName="colorName"
+                    class="form-control"
+                    placeholder="Renk İsmi"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-fiil btn-success" (click)="add()">Ekle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,6 +1,6 @@
 <div class="container px-8">
 <div class="row mb-3 gx-5 ">
-    <div class="col  ">
+    <div class="col">
         <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example">
             <option selected>Model Seçiniz</option>
             <option *ngFor="let brand of brands"  >{{brand.brandName}}</option>
@@ -13,10 +13,10 @@
           </select>
     </div>
     <div  class="col ">
-        <a  routerLink='../../../cars/brand/{{brandFilter}}'
-            routerLink="../../../cars/color/{{colorFilter}}"
+        <a  routerLink='/cars/brand/{{brandFilter}}'
+            routerLink="/cars/color/{{colorFilter}}"
             class="btn btn-primary">Filtrele</a>&nbsp;
-        <a routerLink="" class="btn btn-warning">Temizle</a>
+        <a routerLink="/" class="btn btn-warning">Temizle</a>
         </div>
 </div>
 </div>

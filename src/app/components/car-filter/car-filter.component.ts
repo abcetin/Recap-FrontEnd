@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
-import { Car } from 'src/app/models/car';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
@@ -19,15 +18,11 @@ export class CarFilterComponent implements OnInit {
   ) {}
   brands: Brand[] = [];
   colors: Color[] = [];
-  @Output() brandFilterEvent = new EventEmitter<string>();
-  @Output() colorFilterEvent = new EventEmitter<string>();
   brandFilter:string;
   colorFilter:string;
   ngOnInit(): void {
     this.getBrands();
     this.getColors();
-    this.brandFilterEvent.emit(this.brandFilter);
-    this.colorFilterEvent.emit(this.colorFilter);
   }
 
   getBrands(){

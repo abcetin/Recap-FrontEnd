@@ -26,6 +26,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RentalAddComponent } from './components/rental-add/rental-add.component';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarDeleteComponent } from './components/car/cardelete/cardelete.component';
+import { CarUpdateComponent } from './components/car/carupdate/carupdate.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
+import { BrandDeleteComponent } from './components/brand/brand-delete/brand-delete.component';
+import { BrandUpdateModalComponent } from './components/brand/brand-update/brand-update-modal/brand-update-modal.component';
+import { ColorAddComponent } from './components/color/color-add/color-add.component';
+import { ColorUpdateComponent } from './components/color/color-update/color-update.component';
+import { ColorDeleteComponent } from './components/color/color-delete/color-delete.component';
+import { ColorUpdateModalComponent } from './components/color/color-update/color-update-modal/color-update-modal.component';
 
 
 @NgModule({
@@ -47,8 +57,19 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     CarFilterComponent,
     CarAddComponent,
     SidebarComponent,
+    CarDeleteComponent,
+    CarUpdateComponent,
+    BrandAddComponent,
+    BrandUpdateComponent,
+    BrandDeleteComponent,
+    BrandUpdateModalComponent,
+    ColorAddComponent,
+    ColorUpdateComponent,
+    ColorDeleteComponent,
+    ColorUpdateModalComponent,
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

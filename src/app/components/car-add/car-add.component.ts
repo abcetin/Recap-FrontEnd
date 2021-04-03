@@ -6,6 +6,7 @@ import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
+
 @Component({
   selector: 'app-car-add',
   templateUrl: './car-add.component.html',
@@ -19,11 +20,13 @@ export class CarAddComponent implements OnInit {
   selectColorId:string="Renk Seçiniz";
   modelYear:string;
   
+  
   constructor(private fromBuilder:FormBuilder,
     private carService:CarService,
     private toastrService:ToastrService,
     private colorService:ColorService,
-    private brandService:BrandService) { }
+    private brandService:BrandService,
+    ) { }
 
   ngOnInit(): void {
     this.getColor();
@@ -48,21 +51,24 @@ export class CarAddComponent implements OnInit {
       carModel.colorId = parseInt(this.selectColorId);
       carModel.brandId = parseInt(this.selectBrandId);
       carModel.modelYear = this.modelYear.toString();
-      console.log(carModel)
       this.carService.carAdd(carModel).subscribe(response=>{
         this.toastrService.success(response.message,"Başarıyla Eklendi")
-      },resposenError=>{
-        console.log(resposenError);
+      },responseError=>{
+        if(responseError.error.Errors.length>0)
+        {
+         for (let i = 0; i <responseError.error.Errors.length; i++) {
+          this.toastrService.error(responseError.error.Errors[i].ErrorMessage,"Doğrulama Hatası")
+         }
+        }
         
       })
     }else{
       this.toastrService.error("Araç Eklenemedi","Lütfen Formu Kontrol Edin");
       
     }
-
-    console.log(this.selectBrandId,this.selectColorId,this.modelYear)
   }
 
+  
   getColor(){
     this.colorService.getColors().subscribe(response=>{
       this.colors=response.data;

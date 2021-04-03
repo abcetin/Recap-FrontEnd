@@ -1,49 +1,98 @@
-<div class="d-flex flex-column p-3 text-white bg-dark" style="width: 280px;">
+<!-- <div class="sidenav fixed-top d-flex flex-column p-3 text-white bg-dark" style="height: 569px; width:140px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <svg class="bi me-2" width="10" height="8"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">Sidebar</span>
     </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-100">
+    <ul class="nav nav-pills ">
       <li class="nav-item">
         <a href="#" class="nav-link active">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          <svg class="bi me-2" width="8" height="8"><use xlink:href="#home"/></svg>
           Home
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <svg class="bi me-2" width="8" height="8"><use xlink:href="#speedometer2"/></svg>
           Dashboard
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <svg class="bi me-2" width="8" height="8"><use xlink:href="#table"/></svg>
           Orders
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          <svg class="bi me-2" width="8" height="8"><use xlink:href="#grid"/></svg>
           Products
         </a>
       </li>
       <li>
         <a href="#" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
+          <svg class="bi me-2" width="8" height="8"><use xlink:href="#people-circle"/></svg>
           Customers
         </a>
       </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
-  </div>
+    </ul> -->
+
+    <div class="sidenav sidenav-primary" >
+        <a ></a><br><br>
+        <div class="accordion accordion-flush" id="carAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#car-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-size: large; ">
+                Araç İşlemleri
+              </button>
+            </h2>
+            <div id="car-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#carAccordion">
+              <div class="accordion-body">
+                <a routerLink='/cars/add' style="font-size: medium;">Araç Ekle</a>
+                <a routerLink='/cars/delete'style="font-size: medium;">Araç Sil</a>
+                <a routerLink='/cars/update' style="font-size: medium; ">Araç Güncelle</a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion accordion-flush" id="brandAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#brand-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-size: large; ">
+                Marka İşlemleri
+              </button>
+            </h2>
+            <div id="brand-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#brandAccordion">
+              <div class="accordion-body">
+                <a routerLink='/brands/add' style="font-size: medium;">Marka Ekle</a>
+                <a routerLink='/brands/delete'style="font-size: medium;">Marka Sil</a>
+                <a routerLink='/brands/update' style="font-size: medium; ">Marka Güncelle</a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion accordion-flush" id="colorAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#color-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="font-size: large; ">
+                Renk İşlemleri
+              </button>
+            </h2>
+            <div id="color-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#colorAccordion">
+              <div class="accordion-body">
+                <a routerLink='/colors/add' style="font-size: medium;">Renk Ekle</a>
+                <a routerLink='/colors/delete'style="font-size: medium;">Renk Sil</a>
+                <a routerLink='/colors/update' style="font-size: medium; ">Renk Güncelle</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+       
+   
+      
+
+
+      

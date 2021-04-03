@@ -38,7 +38,9 @@
     routerLink="/cars/color/{{color.colorName}}"
     *ngFor="let color of colors | filterColor: filterText"
     [class]="getCurrentColorClass(color.colorName)"
+    class="list-group-item d-flex justify-content-between align-items-center"
   >
     {{ color.colorName }}
+    <span (click)="update(color)"  type="button" class="badge bg-success rounded-pill">Güncelle</span>
   </li>
 </ul>

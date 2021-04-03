@@ -1,0 +1,50 @@
+<div class="modal-content">
+    <div class="modal-body">
+      <div class="card mt-4">
+          <div class="container-fluid py-3">
+            <div class="row">
+              <div class="mx-auto">
+                <div id="pay-invoice" class="card">
+                  <div class="modal-body">
+                    <form [formGroup]="colorUpdateFrom">
+                        <div class="mb-3">
+                          <div class="form-group">
+                              <label for="colorId">Renk Kodu</label>
+                              <div class="form-group">
+                                <input
+                                  type="number"
+                                  id="colorId"
+                                  [(ngModel)]="colorId"
+                                  formControlName="colorId"
+                                  class="form-control"
+                                  placeholder="Renk Kodu"
+                                />
+                              </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="colorName">Renk İsmi</label>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              id="colorName"
+                              [(ngModel)]="colorName"
+                              formControlName="colorName"
+                              class="form-control"
+                              placeholder="Renk İsmi"
+                            />
+                          </div>
+                        </div>
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <div class="card-footer">
+            <button class="btn btn-fiil btn-success" (click)="update()">Güncelle</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -12,8 +12,8 @@
   Yükleniyor...
 </button>
 
-<div class="row">
-  <div class="col-md-9">
+<div class="row" >
+  <div class="col-md-7" style="margin-left: 5%;">
     <table *ngIf="dataLoaded == true" class="table">
       <thead>
         <tr>
@@ -25,12 +25,14 @@
           <th class="bg-primary" style="color: white">Kiralama Bitiş Tarihi</th>
         </tr>
       </thead>
-      <tr *ngFor="let rental of rentals">
-        <td>{{ rental.carName }}</td>
-        <td>{{ rental.userName }}</td>
-        <td>{{ rental.rentDate }}</td>
-        <td>{{ rental.returnDate }}</td>
-      </tr>
+      <tbody>
+        <tr  *ngFor="let rental of rentals">
+          <td>{{ rental.carName }}</td>
+          <td>{{ rental.userName }}</td>
+          <td>{{ rental.rentDate }}</td>
+          <td>{{ rental.returnDate }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div class="col-md-3">

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+import { BrandDataService } from 'src/app/services/brandData.service';
+import { BrandUpdateModalComponent } from './brand-update/brand-update-modal/brand-update-modal.component';
 
 @Component({
   selector: 'app-brand',
@@ -12,11 +15,22 @@ export class BrandComponent implements OnInit {
   currentBrand:string="";
   dataLoaded = false;
   filterText = "";
-  constructor(private brandService : BrandService) { }
+  modalRef:BsModalRef;
+  selectBrand:Brand;
+  brandId:number;
+  id:number;
+  brandName:string;
+  
+
+  constructor(private brandService : BrandService,
+    public modalService:BsModalService,
+    private dataService:BrandDataService) { }
 
   ngOnInit(): void {
-   
     this.getBrands();
+    this.dataService.currentId.subscribe(response=>this.id=response);
+    this.dataService.currentBrandId.subscribe(response=>this.brandId=response);
+    this.dataService.currentBrandName.subscribe(response=>this.brandName=response);
   }
 
   getBrands(){
@@ -51,6 +65,15 @@ export class BrandComponent implements OnInit {
     {
       return 'list-group-item'
     }
+  }
+
+  updateButton(brand : Brand){
+    this.modalRef = this.modalService.show(BrandUpdateModalComponent);
+    this.selectBrand=brand;
+    this.id = this.selectBrand.id
+    this.brandId = this.selectBrand.brandId;
+    this.brandName = this.selectBrand.brandName;
+    this.dataService.sendBrand(this.id,this.brandId,this.brandName);
   }
 
 }
