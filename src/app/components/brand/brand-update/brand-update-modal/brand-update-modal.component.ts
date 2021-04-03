@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder,FormControl,Validators} from '@angular/forms'
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { BrandService } from 'src/app/services/brand.service';
 import { BrandDataService } from 'src/app/services/brandData.service';
@@ -11,50 +16,53 @@ import { BrandDataService } from 'src/app/services/brandData.service';
   inputs: ['brandId'],
 })
 export class BrandUpdateModalComponent implements OnInit {
+  brandUpdateFrom: FormGroup;
+  id: number;
+  brandId: number;
+  brandName: string;
 
-  brandUpdateFrom : FormGroup;
-  id:number;
-  brandId:number;
-  brandName:string;
-
-
-  constructor(private brandService:BrandService,
-              private toastrService:ToastrService,
-              private formBuilder:FormBuilder,
-              private dataService:BrandDataService) { }
+  constructor(
+    private brandService: BrandService,
+    private toastrService: ToastrService,
+    private formBuilder: FormBuilder,
+    private dataService: BrandDataService
+  ) {}
 
   ngOnInit(): void {
     this.createBrandAddFrom();
-    this.dataService.currentId.subscribe(response=>this.id=response)
-    this.dataService.currentBrandId.subscribe(response=>this.brandId=response)
-    this.dataService.currentBrandName.subscribe(response=>this.brandName=response)
+    this.dataService.currentId.subscribe((response) => (this.id = response));
+    this.dataService.currentBrandId.subscribe( (response) => (this.brandId = response));
+    this.dataService.currentBrandName.subscribe((response) => (this.brandName = response));
   }
-  createBrandAddFrom(){
+  createBrandAddFrom() {
     this.brandUpdateFrom = this.formBuilder.group({
-      id:[""],
-      brandId:["",Validators.required],
-      brandName:["",Validators.required]
-    })
+      id: [''],
+      brandId: ['', Validators.required],
+      brandName: ['', Validators.required],
+    });
   }
 
-  
-  update(){
-    
-    if(this.brandUpdateFrom.valid){
-      let brandModel = Object.assign({},this.brandUpdateFrom.value);
-      brandModel.id = this.id
-      console.log(brandModel)
-      this.brandService.brandUpdate(brandModel).subscribe(response=>{
-        this.toastrService.success("Marka Başarıyla Güncellendi")
-      },responseError=>{
-        this.toastrService.error(responseError.error.message,"Doğrulama Hatası")
-      })
-
-    }
-    else{
-      this.toastrService.error("Ekleme İşlemi Başarısız Formu Kontrol Ediniz.")
-    }
+  update() {
+   
+      if (this.brandUpdateFrom.valid) {
+        let brandModel = Object.assign({}, this.brandUpdateFrom.value);
+        brandModel.id = this.id;
+        this.brandService.brandUpdate(brandModel).subscribe(
+          (response) => {
+            this.toastrService.success('Marka Başarıyla Güncellendi');
+          },
+          (responseError) => {
+            this.toastrService.error(
+              responseError.error.message,
+              'Doğrulama Hatası'
+            );
+          }
+        );
+      } else {
+        this.toastrService.error(
+          'Ekleme İşlemi Başarısız Formu Kontrol Ediniz.'
+        );
+      }
+    } 
   }
-
-}
 

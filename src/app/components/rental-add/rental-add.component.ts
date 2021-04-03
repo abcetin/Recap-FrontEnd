@@ -8,6 +8,8 @@ import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
 import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { PaymentDataService } from 'src/app/services/payment-data.service';
 import { RentalService } from 'src/app/services/rental.service';
 import { PaymentModalComponent } from '../payment-modal/payment-modal.component';
 
@@ -26,10 +28,11 @@ export class RentalAddComponent implements OnInit {
   rental:Rental[]=[];
   customers: Customer[] = [];
   customerId: string ="Müşteri Seçiniz";
-  rentDate:string = new Date().toLocaleDateString('en-CA');
-  returnDate: string = new Date().toLocaleDateString('en-CA');
+  rentDate:string ;
+  returnDate: string ;
   modalRef: BsModalRef;
   click : boolean = false;
+  isPay:boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,6 +42,8 @@ export class RentalAddComponent implements OnInit {
     public modalService: BsModalService,
     private customerService: CustomerService,
     private rentalService: RentalService,
+    private localStorageService:LocalStorageService,
+    private paymnetDataService:PaymentDataService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +56,8 @@ export class RentalAddComponent implements OnInit {
       }
     });
     this.getCustomers();
+    this.getRentMinDate();
+    this.getReturnMinDate();
   }
 
   getCars(id: number) {
@@ -94,7 +101,7 @@ export class RentalAddComponent implements OnInit {
         (rentalModel.customerId = parseInt(this.customerId.toString()));
         rentalModel.carId=parseInt(this.carId.toString());
         
-        if(localStorage.getItem("message")){
+        if(this.localStorageService.getLocalStroge("message")){
           this.rentalService.addRental(rentalModel).subscribe(
             (response) => {
               this.toastrService.success(response.message);
@@ -107,7 +114,7 @@ export class RentalAddComponent implements OnInit {
               }
             }
           );
-          localStorage.removeItem("message");
+          this.localStorageService.removeLocalStorage("message")
         }
         else{
           this.toastrService.info("Lütfen Ödeme İşlemini Gerçekleştirin")
@@ -117,18 +124,23 @@ export class RentalAddComponent implements OnInit {
       }
   }
 
+  
+
+
   getRentMinDate() {
     var today = new Date();
-    today.setDate(today.getDate());
-    return today.toISOString().slice(0, 10);
+    today.setDate(today.getDate()+1);
+    this.rentDate =  today.toISOString().slice(0, 10);
+    return this.rentDate;
   }
   getReturnMinDate() {
     var today = new Date();
-    today.setDate(today.getDate() + 1);
-    return today.toISOString().slice(0, 10);
+    today.setDate(today.getDate() + 2);
+    this.returnDate =  today.toISOString().slice(0, 10);
+    return this.returnDate;
   }
 
   openModal(){
-    this.modalRef = this.modalService.show(PaymentModalComponent); 
+    this.modalRef = this.modalService.show(PaymentModalComponent);
   }
 }

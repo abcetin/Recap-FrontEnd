@@ -3,6 +3,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { CardService } from 'src/app/services/card.service';
 import {FormGroup, FormBuilder,FormControl,Validators} from '@angular/forms';
+import { PaymentDataService } from 'src/app/services/payment-data.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 
 @Component({
@@ -14,14 +16,18 @@ export  class PaymentModalComponent implements OnInit {
   
   
   cardAddForm:FormGroup;
+  isPay:boolean=false;
 
   constructor(public modalRef: BsModalRef,
     private cardService:CardService,
     private toastrService:ToastrService,
-    private formBuilder:FormBuilder) { }
+    private formBuilder:FormBuilder,
+    private paymentDataService:PaymentDataService,
+    private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
     this.createCardAddForm();
+    this.paymentDataService.currentIsPay.subscribe(response=>this.isPay=response)
   }
 
   createCardAddForm(){
@@ -39,7 +45,10 @@ export  class PaymentModalComponent implements OnInit {
       let cardModel=Object.assign({},this.cardAddForm.value);
       this.cardService.addCard(cardModel).subscribe(response=>{
         this.toastrService.success(response.message,"Ödeme Başarılı")
-        localStorage.setItem("message",response.message)
+        this.localStorageService.setLocalStorage("message",response.message)
+        this.isPay=true
+        console.log(this.isPay)
+        this.paymentDataService.sendPay(this.isPay);
       },responseError=>{
         if(responseError.error.Errors.length>0)
         {
@@ -48,11 +57,12 @@ export  class PaymentModalComponent implements OnInit {
          }
         }
       });
+      
     }
     else{
       this.toastrService.error("Ödeme Onaylanmadı","Lütfen Formu Kontrol Edin");
+      
     }
-    
   }
   
 

@@ -1,0 +1,64 @@
+<div class="content">
+    <div class="col-md-8" style="margin-left: 10%;">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Profil Bilgileri</h5>
+          <div class="card-body">
+            <form [formGroup]="userUpdateFrom">
+              <div class="mb-3">
+                <div class="form-group">
+                    <label for="firstName">Kullanıcı İsmi</label>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="firstName" id="firstName"formControlName="firstName" class="form-control" placeholder="Kullanıcı İsmi"/>
+                      </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="lastName">Kullanıcı Soyismi</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="lastName"
+                    [(ngModel)]="lastName"
+                    formControlName="lastName"
+                    class="form-control"
+                    placeholder="Kullanıcı Soyismi"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="email">Eposta</label>
+                <div class="form-group">
+                    <input
+                      type="text"
+                      id="email"
+                      [(ngModel)]="email"
+                      formControlName="email"
+                      class="form-control"
+                      placeholder="123@example.com"
+                      readonly
+                    />
+                  </div>
+              </div>
+              <div class="mb-3">
+                <label for="email">Şifre</label>
+                <div class="form-group">
+                    <input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      class="form-control"
+                      placeholder="password"
+                    />
+                  </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-fiil btn-success" (click)="update()">Güncelle</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -36,6 +36,11 @@ import { ColorAddComponent } from './components/color/color-add/color-add.compon
 import { ColorUpdateComponent } from './components/color/color-update/color-update.component';
 import { ColorDeleteComponent } from './components/color/color-delete/color-delete.component';
 import { ColorUpdateModalComponent } from './components/color/color-update/color-update-modal/color-update-modal.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { RegisterComponent } from './components/register/register.component';
+import { NaviAuthComponent } from './components/navi-auth/navi-auth.component';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -67,6 +72,10 @@ import { ColorUpdateModalComponent } from './components/color/color-update/color
     ColorUpdateComponent,
     ColorDeleteComponent,
     ColorUpdateModalComponent,
+    LoginComponent,
+    RegisterComponent,
+    NaviAuthComponent,
+    UserComponent,
   ],
   imports: [
     
@@ -82,7 +91,9 @@ import { ColorUpdateModalComponent } from './components/color/color-update/color
     }),
     
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

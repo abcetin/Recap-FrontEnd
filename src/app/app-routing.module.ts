@@ -11,7 +11,11 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
 import { ColorDeleteComponent } from './components/color/color-delete/color-delete.component';
 import { ColorUpdateComponent } from './components/color/color-update/color-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {path:"",pathMatch:"full",component:CarComponent},
@@ -21,15 +25,18 @@ const routes: Routes = [
   {path:"cars/getbyid/:id",component:CarComponent},
   {path:"rentals",component:RentalComponent},
   {path:"getcarimages/:id",component:CarouselComponent},
-  {path:"cars/add",component:CarAddComponent},
-  {path:"cars/delete",component:CarDeleteComponent},
-  {path:"cars/update",component:CarUpdateComponent},
-  {path:"brands/add",component:BrandAddComponent},
-  {path:"brands/delete",component:BrandDeleteComponent},
-  {path:"brands/update",component:BrandUpdateComponent},
-  {path:"colors/add",component:ColorAddComponent},
-  {path:"colors/delete",component:ColorDeleteComponent},
-  {path:"colors/update",component:ColorUpdateComponent},
+  {path:"cars/add",component:CarAddComponent, canActivate:[LoginGuard]},
+  {path:"cars/delete",component:CarDeleteComponent, canActivate:[LoginGuard]},
+  {path:"cars/update",component:CarUpdateComponent, canActivate:[LoginGuard]},
+  {path:"brands/add",component:BrandAddComponent, canActivate:[LoginGuard]},
+  {path:"brands/delete",component:BrandDeleteComponent, canActivate:[LoginGuard]},
+  {path:"brands/update",component:BrandUpdateComponent, canActivate:[LoginGuard]},
+  {path:"colors/add",component:ColorAddComponent, canActivate:[LoginGuard]},
+  {path:"colors/delete",component:ColorDeleteComponent, canActivate:[LoginGuard]},
+  {path:"colors/update",component:ColorUpdateComponent, canActivate:[LoginGuard]},
+  {path:"login",component:LoginComponent},
+  {path:"register",component:RegisterComponent},
+  {path:"user",component:UserComponent},
   //{path:"cars/filter/:brandName/:colorName",component:CarComponent},
   
 ];

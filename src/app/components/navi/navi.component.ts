@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { CustomerComponent } from '../customer/customer.component';
 import { RentalComponent } from '../rental/rental.component';
 
@@ -10,12 +12,16 @@ import { RentalComponent } from '../rental/rental.component';
 })
 export class NaviComponent implements OnInit {
 
-  constructor(
-    ) { }
+  
+  constructor(private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
-    localStorage.removeItem("message");
+    this.localStorageService.removeLocalStorage("message");
   }
+
+  
+
+ 
 
  
 

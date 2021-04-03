@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ColorDataService } from 'src/app/services/color-data.service';
 import { ColorService } from 'src/app/services/color.service';
@@ -24,6 +25,7 @@ export class ColorComponent implements OnInit {
 
   constructor(private colorService:ColorService,
     private colorDataSerivce:ColorDataService,
+    private toastrService:ToastrService,
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
@@ -48,9 +50,8 @@ export class ColorComponent implements OnInit {
     }
   }
 
-  setCurrentAllColor(color:string){
-    color="";
-    this.currentColor=color;
+  setCurrentAllColor(){
+    this.currentColor="";
   }
 
   setCurrentColor(color:string){
@@ -68,11 +69,18 @@ export class ColorComponent implements OnInit {
   }
 
   update(color:Color){
+    if (localStorage.getItem('token')) {
     this.modalRef = this.modalService.show(ColorUpdateModalComponent)
     this.selectColor = color;
     this.id = this.selectColor.id;
     this.colorId = this.selectColor.colorId;
     this.colorName = this.selectColor.colorName;
     this.colorDataSerivce.sendColor(this.id,this.colorId,this.colorName)
-  }
+      }else{
+        this.toastrService.info("Lütfen Giriş Yapınız")
+      }
+    }
+
+
 }
+

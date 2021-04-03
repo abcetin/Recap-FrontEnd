@@ -1,0 +1,14 @@
+<div *ngIf="checkLogin==false"  class="btn-group" role="group" aria-label="Basic example" >
+    <button routerLink="login" type="button" class="btn btn-primary">Giriş Yap</button>
+    <button routerLink="register" type="button" class="btn btn-primary">Kayıt Ol</button>
+  </div>
+  <div *ngIf="checkLogin==true" class="dropdown" >
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color: lightskyblue;">
+     {{firstName}} {{lastName}}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin-inline-start: -14%;">
+      <li><a routerLink="user" class="dropdown-item" >Profili Güncelle</a></li>
+      <li><a class="dropdown-item">Another action</a></li>
+      <li><a (click)="quit()" class="dropdown-item">Çıkış</a></li>
+    </ul>
+  </div>

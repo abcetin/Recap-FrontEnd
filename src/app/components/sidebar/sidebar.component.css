@@ -9,7 +9,6 @@
     left: 0;
     background-color: #cbdfe9; 
     
-    text-decoration: white;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
   }
@@ -30,7 +29,7 @@
   
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
-    color: #c0e1f8;
+    color: #337ddf;
   }
   
   /* Style page content */

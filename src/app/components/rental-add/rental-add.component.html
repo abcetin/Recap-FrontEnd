@@ -40,7 +40,7 @@
                   formControlName="rentDate"
                   class="form-control"
                   min="{{ getRentMinDate() }}"
-                  [value]="getRentMinDate()"
+                  value="{{rentDate}}"
                   [(ngModel)]="rentDate"
                   type="date"
                 /></td>
@@ -54,7 +54,7 @@
                   [(ngModel)]="returnDate"
                   type="date"
                   min="{{ getReturnMinDate() }}"
-                  [value]="getReturnMinDate()"
+                  value="{{returnDate}}"
                 /></td>
               </tr>
             </tbody>

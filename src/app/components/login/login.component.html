@@ -1,0 +1,22 @@
+<body class="text-center">
+    
+    <main class="form-signin">
+      <form [formGroup]="loginForm">
+        
+        <h1 class="h3 mb-3 fw-normal">Giriş Yap</h1>
+    
+        <div class="form-floating">
+          <input [(ngModel)]="email" type="email" class="form-control" id="email" formControlName="email" placeholder="name@example.com">
+          <label for="floatingInput">E-posta</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+          <label for="floatingPassword">Şifre</label>
+        </div>
+        <button (click)="login()" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      </form>
+    </main>
+    
+    
+        
+      </body>
