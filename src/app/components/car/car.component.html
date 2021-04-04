@@ -19,7 +19,7 @@
           type="text"
           class="form-control"
           [(ngModel)]="filterText"
-          id="filterText"
+          id="filterTextCar"
           placeholder="arama ifadesi giriniz..."
         />
         <div *ngIf="filterText" class="alert alert-primary">
@@ -43,10 +43,11 @@
                   height="120"
               /></a>
               <div class="card-body d-grid gap-2 mx-auto">
-                <h5 class="card-title" style="font-size: medium; margin-inline: -8px;">
+                <h5 class="card-title" style="font-size: 15px; margin-inline: -12px; margin-top: -2%;">
                   {{ car.brandName }} - {{ car.carName }}
                 </h5>
-                <p class="card-text" style="font-size: small; margin-inline: -16px; font-weight: 600;">
+                <p class="card-text" style="font-size: small; margin-inline: -16px; font-weight: 600; margin-top: -2%;">
+                  Findex : {{car.findexPuan}} <br>
                   Renk : {{ car.colorName }}<br />
                   Model Yılı : {{ car.modelYear }} 
                   Günlük Ücreti : {{ car.dailyPrice | currency: "₺" }}

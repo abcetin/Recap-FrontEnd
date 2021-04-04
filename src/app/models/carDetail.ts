@@ -4,6 +4,7 @@ export interface CarDetail{
     carName:string;
     modelYear:string;
     colorName:string;
+    findexPuan:number;
     dailyPrice:number;
     imagePath:string[];
 }

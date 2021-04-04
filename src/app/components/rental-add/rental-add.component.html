@@ -1,7 +1,7 @@
 <div class="content">
   <div class="col-md-10">
     <div  *ngFor="let car of cars"  class="card">
-      <div class="card-header"><h5 class="title">{{ car.brandName }} - {{ car.carName }} </h5></div>
+      <div class="card-header"><h5 class="title">{{ car.brandName }} - {{ car.carName }} | Findex Puanı : {{car.findexPuan}}</h5></div>
       <div class="card-body">
         <form [formGroup]="rentalAddForm" class="form-group row mb-2">
           <table class="table table-sm " id="rentalTable" style="padding-top:20px;">
@@ -16,13 +16,20 @@
               </tr>
               <tr>
                 <td>Müşteri Bilgisi</td>
-                <td>
-                  <select [(ngModel)]="customerId" class="form-select" id="customerId"  formControlName ="customerId"  >
-                    <option selected value="Müşteri Seçiniz">Müşteri Seçiniz</option>
-                    <option [value]="customer.id" *ngFor="let customer of customers" >
-                    {{ customer.companyName }}
-                    </option>
-                  </select>
+                <td >
+                  {{firstName}} {{lastName}}
+                </td>
+              </tr>
+              <tr>
+                <td>Şirket Bilgisi</td>
+                <td >
+                  {{companyName}}
+                </td>
+              </tr>
+              <tr>
+                <td>Findex Bilgisi</td>
+                <td >
+                  {{findex}}
                 </td>
               </tr>
               <tr>

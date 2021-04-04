@@ -13,7 +13,6 @@ export class NaviAuthComponent implements OnInit {
   checkLogin:boolean=false;
   id:number;
   user:User[];
-  email:string;
   firstName:string;
   lastName:string;
 
@@ -40,7 +39,7 @@ export class NaviAuthComponent implements OnInit {
       this.user=response.data;
       for (let index = 0; index < this.user.length; index++) {
         const element = this.user[index];
-        this.id=element.id;
+        this.id=element.userId;
         this.firstName = element.firstName;
         this.lastName = element.lastName;
       }
@@ -48,8 +47,7 @@ export class NaviAuthComponent implements OnInit {
   }
 
   quit(){
-    this.localStorageService.removeLocalStorage("email");
-    this.localStorageService.removeLocalStorage("token");
+    this.localStorageService.clear();
     window.location.reload()
   }
 

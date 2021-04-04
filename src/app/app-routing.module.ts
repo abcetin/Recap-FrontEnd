@@ -36,7 +36,7 @@ const routes: Routes = [
   {path:"colors/update",component:ColorUpdateComponent, canActivate:[LoginGuard]},
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
-  {path:"user",component:UserComponent},
+  {path:"user",component:UserComponent,  canActivate:[LoginGuard]},
   //{path:"cars/filter/:brandName/:colorName",component:CarComponent},
   
 ];

@@ -6,11 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { CarDetail } from 'src/app/models/carDetail';
 import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
+import { User } from 'src/app/models/user';
+import { UserFindex } from 'src/app/models/userFindex';
 import { CarService } from 'src/app/services/car.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { FindexService } from 'src/app/services/findex.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { PaymentDataService } from 'src/app/services/payment-data.service';
 import { RentalService } from 'src/app/services/rental.service';
+import { UserService } from 'src/app/services/user.service';
 import { PaymentModalComponent } from '../payment-modal/payment-modal.component';
 
 @Component({
@@ -23,16 +26,20 @@ import { PaymentModalComponent } from '../payment-modal/payment-modal.component'
 export class RentalAddComponent implements OnInit {
   dataLoaded = false;
   rentalAddForm: FormGroup;
+  user:User[];
+  findex:number;
+  carFindex:number;
+  firstName:string;
+  lastName:string;
+  userId:number;
   carId:number;
   cars: CarDetail[] = [];
   rental:Rental[]=[];
-  customers: Customer[] = [];
-  customerId: string ="Müşteri Seçiniz";
+  companyName:string;
   rentDate:string ;
   returnDate: string ;
   modalRef: BsModalRef;
   click : boolean = false;
-  isPay:boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,7 +50,7 @@ export class RentalAddComponent implements OnInit {
     private customerService: CustomerService,
     private rentalService: RentalService,
     private localStorageService:LocalStorageService,
-    private paymnetDataService:PaymentDataService
+    private userService:UserService,
   ) {}
 
   ngOnInit(): void {
@@ -52,30 +59,58 @@ export class RentalAddComponent implements OnInit {
         this.carId=params['id'];
         this.getCars(params['id']);
         this.createRentalAddForm(params['id']);
-        this.getRentalsId(params['id'])
+        this.getRentalsId(params['id']);
+        this.checkFindex();
       }
     });
-    this.getCustomers();
     this.getRentMinDate();
     this.getReturnMinDate();
+    this.getUserByEmail();
+    this.getCustomerByUserId();
+    console.log(this.findex)
   }
 
   getCars(id: number) {
     this.carService.getCarDetailsById(id).subscribe((response) => {
       this.cars = response.data;
+      for (let index = 0; index < this.cars.length; index++) {
+        const element = this.cars[index];
+        this.findex = parseInt(this.localStorageService.getLocalStroge("findex"));
+        if(element.findexPuan>this.findex){
+          this.click=true;
+          this.toastrService.error("Findex Puanınınz Yetersiz")
+        }
+        else{
+          this.click=false;
+        }
+      }
     });
   }
 
-  getCustomers() {
-    this.customerService.getCustomers().subscribe((response) => {
-      this.customers = response.data;
+  getCustomerByUserId() {
+    let userId = this.localStorageService.getLocalStroge("userId")
+    this.customerService.getCustomerByUSerId(parseInt(userId)).subscribe((response) => {
+      this.companyName= response.data.companyName;
     });
   }
 
+  getUserByEmail(){
+    let email = this.localStorageService.getLocalStroge("email");
+    this.userService.getUserByEmail(email).subscribe(response=>{
+      this.user=response.data;
+      for (let index = 0; index < this.user.length; index++) {
+        const element = this.user[index];
+        this.firstName=element.firstName;
+        this.lastName = element.lastName;
+      }
+    })
+  }
+
+  
   createRentalAddForm(id: number) {
     this.rentalAddForm = this.formBuilder.group({
       carId:parseInt(id.toString()),
-      customerId: ['', Validators.required],
+      customerId: [''],
       rentDate: ['', Validators.required],
       returnDate: ['', Validators.required],
     });
@@ -84,23 +119,28 @@ export class RentalAddComponent implements OnInit {
   getRentalsId(id:number){
     this.rentalService.getById(id).subscribe(response=>{
       this.rental=response.data;
-      if(this.rental.length==0 ){
-        this.click=false
-      }
-      else{
-        this.toastrService.error("Bu araç Hali Hazırda kiralanmıştır.");
-        this.click=true
+      for (let index = 0; index < this.rental.length; index++) {
+        const element = this.rental[index];
+        if(element.returnDate.toString() <= this.rentDate ){
+          this.click=false;
+        }
+        else{
+          this.toastrService.error("Bu araç Hali Hazırda kiralanmıştır.");
+          this.click=true
+        }
       }
     })
   }
   
   addToCart() {
+    
+    let customerId = this.localStorageService.getLocalStroge("userId")
+    
       if (this.rentalAddForm.valid) {
         this.dataLoaded = true;
         let rentalModel = Object.assign({}, this.rentalAddForm.value);
-        (rentalModel.customerId = parseInt(this.customerId.toString()));
+        (rentalModel.customerId = parseInt(customerId));
         rentalModel.carId=parseInt(this.carId.toString());
-        
         if(this.localStorageService.getLocalStroge("message")){
           this.rentalService.addRental(rentalModel).subscribe(
             (response) => {
@@ -138,6 +178,11 @@ export class RentalAddComponent implements OnInit {
     today.setDate(today.getDate() + 2);
     this.returnDate =  today.toISOString().slice(0, 10);
     return this.returnDate;
+  }
+
+  checkFindex(){
+    this.carFindex = parseInt(this.localStorageService.getLocalStroge("carFindex"));
+    
   }
 
   openModal(){

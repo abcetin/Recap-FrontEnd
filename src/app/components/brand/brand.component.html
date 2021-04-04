@@ -17,15 +17,13 @@
     type="text"
     class="form-control"
     [(ngModel)]="filterText"
-    id="filterText"
+    id="filterTextBrand"
     placeholder="arama ifadesi giriniz..."
   />
 </div>
     <div *ngIf="filterText" class="alert alert-success">
     {{ filterText }} aradınız.
     </div>
-  <br/>
-
   <ul  *ngIf="dataLoaded == true" class="list-group">
     <li
       (click)="setCurrentAllBrand('')"
@@ -38,7 +36,7 @@
     <li
       (click)="setCurrentBrand(brand.brandName)"
       routerLink="/cars/brand/{{ brand.brandName }}"
-      *ngFor="let brand of brands | filterBrand: filterText"
+      *ngFor="let brand of brands "
       [class]="getCurrentBrandClass(brand.brandName)"
       class="list-group-item d-flex justify-content-between align-items-center"
     >

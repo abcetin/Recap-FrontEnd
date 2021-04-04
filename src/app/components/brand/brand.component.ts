@@ -15,7 +15,7 @@ export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   currentBrand: string = '';
   dataLoaded = false;
-  filterText = '';
+  filterText:string;
   modalRef: BsModalRef;
   selectBrand: Brand;
   brandId: number;
