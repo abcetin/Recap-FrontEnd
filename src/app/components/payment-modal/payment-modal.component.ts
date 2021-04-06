@@ -83,7 +83,11 @@ export  class PaymentModalComponent implements OnInit {
         this.toastrService.success(response.message,"Ödeme Başarılı")
         this.localStorageService.setLocalStorage("message",response.message)
       },responseError=>{
-        console.log(responseError.error)
+        if(responseError.error.Errors.length>0){
+          for (let index = 0; index < responseError.error.Errors.length; index++) {
+            this.toastrService.error(responseError.error.Errors[index].ErrorMessage,"Doğrulama Hatası")
+          }
+        }
       });
       
     }
