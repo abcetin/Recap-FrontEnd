@@ -1,5 +1,6 @@
 import { Component, ComponentRef, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder, FormControl,Validators} from '@angular/forms';
+import { disableDebugTools } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -28,7 +29,6 @@ export class RentalAddComponent implements OnInit {
   rentalAddForm: FormGroup;
   user:User[];
   findex:number;
-  carFindex:number;
   firstName:string;
   lastName:string;
   userId:number;
@@ -39,7 +39,7 @@ export class RentalAddComponent implements OnInit {
   rentDate:string ;
   returnDate: string ;
   modalRef: BsModalRef;
-  click : boolean = false;
+  click : boolean ;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,20 +54,19 @@ export class RentalAddComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.findex = parseInt(this.localStorageService.getLocalStroge("findex"));
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.carId=params['id'];
         this.getCars(params['id']);
         this.createRentalAddForm(params['id']);
         this.getRentalsId(params['id']);
-        this.checkFindex();
       }
     });
     this.getRentMinDate();
     this.getReturnMinDate();
     this.getUserByEmail();
     this.getCustomerByUserId();
-    console.log(this.findex)
   }
 
   getCars(id: number) {
@@ -75,16 +74,17 @@ export class RentalAddComponent implements OnInit {
       this.cars = response.data;
       for (let index = 0; index < this.cars.length; index++) {
         const element = this.cars[index];
-        this.findex = parseInt(this.localStorageService.getLocalStroge("findex"));
-        if(element.findexPuan>this.findex){
+        console.log(this.findex, element.findexPuan)
+        if(this.findex < element.findexPuan){
           this.click=true;
           this.toastrService.error("Findex Puanınınz Yetersiz")
-        }
-        else{
+          
+        }else{
           this.click=false;
         }
       }
     });
+    
   }
 
   getCustomerByUserId() {
@@ -126,7 +126,7 @@ export class RentalAddComponent implements OnInit {
         }
         else{
           this.toastrService.error("Bu araç Hali Hazırda kiralanmıştır.");
-          this.click=true
+          this.click=true;
         }
       }
     })
@@ -180,10 +180,7 @@ export class RentalAddComponent implements OnInit {
     return this.returnDate;
   }
 
-  checkFindex(){
-    this.carFindex = parseInt(this.localStorageService.getLocalStroge("carFindex"));
-    
-  }
+
 
   openModal(){
     this.modalRef = this.modalService.show(PaymentModalComponent);

@@ -11,14 +11,23 @@
               <div id="pay-invoice" class="card">
                 <div class="card-body">
                   <form  [formGroup]="cardAddForm">
+                    <div class="mb-3">
+                      <label for="id">Kayıtlı Kartlarım</label>
+                      <select id="id"    class="form-select" >
+                          <option selected >Kart Seçiniz</option>
+                          <option  *ngFor="let card of cards let i "  [value]="card.id" >
+                            {{card.id}} {{ card.cardNumber }} 
+                          </option>
+                      </select>
+                      
+                    </div>
                     <div class="form-group">
-                      <label for="cc-number" class="control-label mb-1"
-                        >Kart Numarası</label
-                      >
+                      <label for="cc-number" class="control-label mb-1">Kart Numarası</label>
                       <input
                         class="form-control" 
-                        id="cartNumber" 
-                        formControlName="cartNumber"
+                        id="cardNumber" 
+                        formControlName="cardNumber"
+                        [(ngModel)]="cardNumber" 
                         autocomplete="off"
                         type="text"
                       />
@@ -26,47 +35,44 @@
                     <div class="row">
                       <div class="col-3">
                         <div class="form-group">
-                          <label for="cc-exp" class="control-label mb-1"
-                            >Ay</label
-                          >
+                          <label for="cc-exp" class="control-label mb-1">Ay</label >
                           <input
                           class="form-control" 
                           id="mounth" 
                           formControlName="mounth"
-                          type="number"
+                          [(ngModel)]="mounth" 
+                          type="text"
                           />
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="form-group">
-                          <label for="cc-exp" class="control-label mb-1"
-                            >Yıl</label
-                          >
+                          <label for="cc-exp" class="control-label mb-1" >Yıl</label>
                           <input
                           class="form-control" 
                           id="year" 
                           formControlName="year"
-                          type="number"
+                          [(ngModel)]="year" 
+                          type="text"
                           />
                         </div>
                       </div>
                       <div class="col-6">
-                        <label for="x_card_code" class="control-label mb-1"
-                          >CCV</label
-                        >
+                        <label for="x_card_code" class="control-label mb-1">CCV</label>
                         <div class="input-group">
                           <input
                           class="form-control" 
                           id="ccv" 
                           formControlName="ccv"
-                          type="number"
+                          [(ngModel)]="ccv" 
+                          type="text"
                           autocomplete="off"
                           />
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="x_zip" class="control-label mb-1">Kart Sahibi</label>
-                        <input id="cartOwner" formControlName="cartOwner" type="text" class="form-control" value="" data-val="true">
+                        <input id="cardOwner" [(ngModel)]="cardOwner" formControlName="cardOwner" type="text" class="form-control" value="" data-val="true">
                         <span class="help-block" data-valmsg-for="x_zip" data-valmsg-replace="true"></span>
                     </div>
                     </div>

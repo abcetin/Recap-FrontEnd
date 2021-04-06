@@ -68,17 +68,18 @@
           </table>
           <div class="btn-group" role="group" aria-label="Basic example">
           <button
+              [disabled]="click"
               type="button"
               id="rent"
               class="btn btn-warning btn-block mt-3"
               (click)="addToCart()"
               class="btn btn-outline-success"
-              data-bs-target="#exampleModal"
-              [disabled]="click"
+              
             >
               Kirala
             </button>
             <button
+            [disabled]="click"
             type="button"
             id="payment"
             class="btn btn-warning btn-block mt-3"
@@ -86,7 +87,7 @@
             class="btn btn-outline-success"
             data-bs-toggle="modal" 
             data-bs-target="#exampleModal"
-            [disabled]="click"
+            
           >
             Kart Bilgileri
           </button>

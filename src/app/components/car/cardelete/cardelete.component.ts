@@ -17,8 +17,9 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarDeleteComponent implements OnInit {
   cardeleteForm: FormGroup;
-  carDetails: CarDetail[];
-  selectId: number=0;
+  carDetails: CarDetail[]=[];
+  carDetail:CarDetail[];
+  selectId: number;
   selectBrand: string = 'Marka';
   selectColor: string = 'Renk';
   selectCar: string = 'Model';
@@ -32,8 +33,8 @@ export class CarDeleteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.createDeleteFrom();
     this.getAllCarDetail();
+    this.createDeleteFrom();
   }
 
   createDeleteFrom() {
@@ -72,7 +73,7 @@ export class CarDeleteComponent implements OnInit {
 
   getAllCarDetail() {
     this.carService.getCarDetails().subscribe((response) => {
-      this.carDetails = response.data;
+      this.carDetail = response.data;
     });
   }
 
