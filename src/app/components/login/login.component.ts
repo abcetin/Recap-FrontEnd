@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit {
         (response) => {
           this.localStorageService.setLocalStorage("token",response.data.token);
           this.localStorageService.setLocalStorage("email",loginModel.email);
+          setTimeout(async () =>{return window.location.replace("")},435);
           this.getUserByEmail()
-          setTimeout(async () =>{return window.location.reload(await this.router.navigate(["/"]))},435);
           this.toastrService.success('Giriş Başarılı');
           
         },

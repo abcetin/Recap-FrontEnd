@@ -36,7 +36,6 @@ export class CarComponent implements OnInit {
       else if(params['brandName']){
         this.getCarsByBrand(params['brandName']);
       }
-     
       else {
         this.getCars();
         

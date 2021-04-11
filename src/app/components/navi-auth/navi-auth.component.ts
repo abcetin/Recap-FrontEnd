@@ -15,16 +15,16 @@ export class NaviAuthComponent implements OnInit {
   user:User[];
   firstName:string;
   lastName:string;
-  findex:number;
+  findex:number=0;
 
   constructor(private authService:AuthServiceService,
     private userService:UserService,
     private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
+    this.findex = parseInt(this.localStorageService.getLocalStroge("findex"));
     this.checkUserLogin();
     this.getUserByEmail();
-    this.findex = parseInt(this.localStorageService.getLocalStroge("findex"));
   }
   checkUserLogin(){
     if(this.authService.isAuthenticated()){

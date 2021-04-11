@@ -2,11 +2,11 @@
     <button routerLink="login" type="button" class="btn btn-primary">Giriş Yap</button>
     <button routerLink="register" type="button" class="btn btn-primary">Kayıt Ol</button>
   </div>
-  <div *ngIf="checkLogin==true" class="dropdown" >
+  <div *ngIf="checkLogin==true" class="dropstart" >
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  style="background-color: lightskyblue;">
      {{firstName}} {{lastName}}
     </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin-inline-start: -14%;">
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
       <li><a routerLink="user" class="dropdown-item" >Profili Güncelle</a></li>
       <li><a class="dropdown-item">Findex Puanınız : {{findex}}</a></li>
       <li><a (click)="quit()" class="dropdown-item">Çıkış</a></li>

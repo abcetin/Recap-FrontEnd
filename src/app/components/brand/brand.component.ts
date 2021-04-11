@@ -51,10 +51,7 @@ export class BrandComponent implements OnInit {
     }
   }
 
-  setCurrentAllBrand(brand: string) {
-    this.currentBrand = brand;
-  }
-
+ 
   setCurrentBrand(brand: string) {
     this.currentBrand = brand;
   }

@@ -26,17 +26,16 @@
     </div>
   <ul  *ngIf="dataLoaded == true" class="list-group">
     <li
-      (click)="setCurrentAllBrand('')"
       routerLink=""
       [class]="getAllBrandClass()"
-      aria-current="true"
+      aria-current="false"
     >
       Modeller
     </li>
     <li
       (click)="setCurrentBrand(brand.brandName)"
       routerLink="/cars/brand/{{ brand.brandName }}"
-      *ngFor="let brand of brands "
+      *ngFor="let brand of brands | filterBrand: filterText"
       [class]="getCurrentBrandClass(brand.brandName)"
       class="list-group-item d-flex justify-content-between align-items-center"
     >
@@ -45,3 +44,4 @@
     </li>
 
   </ul>
+  

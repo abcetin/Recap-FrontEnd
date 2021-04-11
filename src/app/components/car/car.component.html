@@ -1,19 +1,11 @@
-<button *ngIf="dataLoaded == false" class="btn btn-primary" type="button" disabled>
-  <span
-    class="spinner-grow spinner-grow-sm"
-    role="status"
-    aria-hidden="true"
-  ></span>
-  Yükleniyor...
-</button>
-<div class="container">
+<div  class="container-fluid">
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-2">
-      <app-brand></app-brand><br />
-      <app-color></app-color><br />
+    <div class="col-md-3">
+      <app-brand ></app-brand><br/>
+      <app-color></app-color><br/>  
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="mb-3">
         <input
           type="text"
@@ -22,9 +14,9 @@
           id="filterTextCar"
           placeholder="arama ifadesi giriniz..."
         />
-        <div *ngIf="filterText" class="alert alert-primary">
-          {{ filterText }} aradınız.
-        </div>
+      </div>
+      <div *ngIf="filterText" class="alert alert-primary">
+        {{ filterText }} aradınız.
       </div>
       <app-car-filter></app-car-filter>
         <div class="container px-5">

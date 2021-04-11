@@ -11,12 +11,9 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'rentacar';
-  
-  user:User[];
   userId:number;
   constructor(private localStorageService:LocalStorageService,
-    private findexService:FindexService,
-    private userService:UserService) {
+    private findexService:FindexService,) {
     
   }
   ngOnInit(): void {
